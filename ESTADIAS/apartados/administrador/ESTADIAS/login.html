@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="loginstyle.css">
+    <style>
+        body, html {
+            height: 100%;
+            background-color: #235851ff;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #login-box {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 100px auto;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #login-box img {
+            margin-bottom: 15px;
+        }
+
+        #login-box h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #login-box input[type="text"],
+        #login-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        .checkbox-container {
+            width: 120px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #333;
+            padding: 6px 10px 10px 0;
+            border-radius: 6px;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #00c7ac;
+            cursor: pointer;
+        }
+
+        #login-box button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00c7ac;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #login-box button:hover {
+            background-color: #007767;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="login-box">
+            <img src="logo biblioteca.png" alt="Logo" width="250px">
+            <h1>Inicio de sesión</h1>
+            <form action="login.php" method="post">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                <input type="password" name="contraseña" placeholder="Contraseña" id="password" required>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="togglePassword">
+                    <label for="togglePassword">Mostrar</label>
+                </div>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('change', () => {
+            passwordInput.type = togglePassword.checked ? 'text' : 'password';
+        });
+    </script>
+</body>
+</html>
