@@ -13,20 +13,18 @@ if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $conn->real_escape_string($_POST['usuario']);
-    $password = $conn->real_escape_string($_POST['contraseña']);
+    var_dump($_POST); // Depura lo que se recibe
+    exit();
 
-    // Consulta usando la nueva tabla 'usuarios'
-    $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$password' AND estatus='Activo'";
+    $usuario = $conn->real_escape_string($_POST['usuario']);
+    $password = $conn->real_escape_string($_POST['contrasena']);
+
+    $sql = "SELECT * FROM usuariosAdmin WHERE usuario='$usuario' AND contrasena='$password'";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows == 1) {
-        $row = $result->fetch_assoc();
         $_SESSION['usuario'] = $usuario;
-        $_SESSION['nivel'] = $row['nivel'];
-        $_SESSION['nombre'] = $row['nombre_usuario'];
         header("Location: index.php");
         exit();
     } else {
@@ -36,4 +34,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+
 ?>
